@@ -27,15 +27,15 @@
 
         <div class="field-group">
           <div class="field full">
-            <label for="facility_name">Facility Name <span class="req">*</span></label>
-            <input type="text" id="facility_name" name="facility_name" required>
+            <label for="facility_name">Facility Name</label>
+            <input type="text" id="facility_name" name="facility_name">
           </div>
         </div>
 
         <div class="field-group">
           <div class="field half">
-            <label for="facility_type">Facility Type <span class="req">*</span></label>
-            <select id="facility_type" name="facility_type" required>
+            <label for="facility_type">Facility Type</label>
+            <select id="facility_type" name="facility_type">
               <option value="">Select...</option>
               <option value="ALF">ALF</option>
               <option value="SNF">SNF</option>
@@ -45,26 +45,26 @@
             </select>
           </div>
           <div class="field half">
-            <label for="parent_company">Parent Company <span class="req">*</span></label>
-            <input type="text" id="parent_company" name="parent_company" required>
+            <label for="parent_company">Parent Company</label>
+            <input type="text" id="parent_company" name="parent_company">
           </div>
         </div>
 
         <div class="field-group">
           <div class="field full">
-            <label for="address">Address <span class="req">*</span></label>
-            <input type="text" id="address" name="address" required>
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address">
           </div>
         </div>
 
         <div class="field-group">
           <div class="field third">
-            <label for="city">City <span class="req">*</span></label>
-            <input type="text" id="city" name="city" required>
+            <label for="city">City</label>
+            <input type="text" id="city" name="city">
           </div>
           <div class="field third">
-            <label for="state">State <span class="req">*</span></label>
-            <select id="state" name="state" required>
+            <label for="state">State</label>
+            <select id="state" name="state">
               <option value="">Select...</option>
               <option value="Indiana">Indiana</option>
               <option value="Kentucky">Kentucky</option>
@@ -76,15 +76,15 @@
             </select>
           </div>
           <div class="field third">
-            <label for="zip">Zip Code <span class="req">*</span></label>
-            <input type="text" id="zip" name="zip" pattern="\d{5}" maxlength="5" placeholder="00000" required>
+            <label for="zip">Zip Code</label>
+            <input type="text" id="zip" name="zip" pattern="\d{5}" maxlength="5" placeholder="00000">
           </div>
         </div>
 
         <div class="field-group">
           <div class="field half">
-            <label for="phone">Phone Number <span class="req">*</span></label>
-            <input type="tel" id="phone" name="phone" placeholder="000-000-0000" required>
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="000-000-0000">
           </div>
           <div class="field half">
             <label for="fax">Fax Number</label>
@@ -130,18 +130,18 @@
 
         <div class="field-group">
           <div class="field half">
-            <label for="beds">Licensed Bed # <span class="req">*</span></label>
-            <input type="number" id="beds" name="beds" min="0" required>
+            <label for="beds">Licensed Bed #</label>
+            <input type="number" id="beds" name="beds" min="0">
           </div>
           <div class="field half">
-            <label for="census">Current Census <span class="req">*</span></label>
-            <input type="number" id="census" name="census" min="0" required>
+            <label for="census">Current Census</label>
+            <input type="number" id="census" name="census" min="0">
           </div>
         </div>
 
         <div class="field-group">
           <div class="field full">
-            <label>Services Provided <span class="req">*</span></label>
+            <label>Services Provided</label>
             <div class="checkbox-group" id="services_provided">
               <label class="checkbox-label"><input type="checkbox" name="services_provided" value="All Services"> All Services</label>
               <label class="checkbox-label"><input type="checkbox" name="services_provided" value="Primary Care"> Primary Care</label>
@@ -156,13 +156,13 @@
 
         <div class="field-group">
           <div class="field half">
-            <label for="expected_start_date">Expected Start Date <span class="req">*</span></label>
-            <input type="date" id="expected_start_date" name="expected_start_date" required>
+            <label for="expected_start_date">Expected Start Date</label>
+            <input type="date" id="expected_start_date" name="expected_start_date">
           </div>
           <div class="field half">
-            <label for="facility_npi">Facility NPI <span class="req">*</span></label>
+            <label for="facility_npi">Facility NPI</label>
             <div class="npi-field">
-              <input type="text" id="facility_npi" name="facility_npi" pattern="\d{10}" maxlength="10" placeholder="10-digit NPI" required>
+              <input type="text" id="facility_npi" name="facility_npi" pattern="\d{10}" maxlength="10" placeholder="10-digit NPI">
               <span class="npi-status" id="facility_npi_status"></span>
             </div>
             <a href="https://npiregistry.cms.hhs.gov" target="_blank" class="help-link">Look up NPI</a>
@@ -237,19 +237,19 @@
         <legend>Facility Contacts</legend>
 
         <div class="contact-block">
-          <h3>Contact 1 <span class="req">*</span></h3>
+          <h3>Contact 1</h3>
           <div class="field-group">
             <div class="field third">
               <label for="contact1_name">Name</label>
-              <input type="text" id="contact1_name" name="contact1_name" required>
+              <input type="text" id="contact1_name" name="contact1_name">
             </div>
             <div class="field third">
               <label for="contact1_title">Title / Position</label>
-              <input type="text" id="contact1_title" name="contact1_title" required>
+              <input type="text" id="contact1_title" name="contact1_title">
             </div>
             <div class="field third">
               <label for="contact1_email">Email</label>
-              <input type="email" id="contact1_email" name="contact1_email" required>
+              <input type="email" id="contact1_email" name="contact1_email">
             </div>
           </div>
         </div>
@@ -299,12 +299,12 @@
 
         <div class="field-group">
           <div class="field half">
-            <label for="ae">Account Executive <span class="req">*</span></label>
-            <input type="text" id="ae" name="ae" required>
+            <label for="ae">Account Executive</label>
+            <input type="text" id="ae" name="ae">
           </div>
           <div class="field half">
-            <label for="care_team">Care Team <span class="req">*</span></label>
-            <select id="care_team" name="care_team" required>
+            <label for="care_team">Care Team</label>
+            <select id="care_team" name="care_team">
               <option value="">Select...</option>
               <option value="Indianapolis">Indianapolis</option>
               <option value="Indiana South">Indiana South</option>
@@ -330,12 +330,12 @@
 
         <div class="field-group">
           <div class="field half">
-            <label for="adcoe">ADCOE <span class="req">*</span></label>
-            <input type="text" id="adcoe" name="adcoe" required>
+            <label for="adcoe">ADCOE</label>
+            <input type="text" id="adcoe" name="adcoe">
           </div>
           <div class="field half">
-            <label for="adcoe_support">ADCOE Support Specialist <span class="req">*</span></label>
-            <input type="text" id="adcoe_support" name="adcoe_support" required>
+            <label for="adcoe_support">ADCOE Support Specialist</label>
+            <input type="text" id="adcoe_support" name="adcoe_support">
           </div>
         </div>
 

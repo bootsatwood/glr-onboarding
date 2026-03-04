@@ -129,42 +129,10 @@
   }
 
   // --- Validation ---
+  // All fields are optional for now — AEs submit what they have.
 
   function validateCurrentSection() {
-    var section = form.querySelector('[data-section="' + currentSection + '"]');
-    var fields = section.querySelectorAll("input[required], select[required]");
-    var valid = true;
-
-    fields.forEach(function (f) {
-      f.classList.remove("invalid");
-
-      if (f.type === "email" && f.value && !f.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-        f.classList.add("invalid");
-        valid = false;
-      } else if (!f.value.trim()) {
-        f.classList.add("invalid");
-        valid = false;
-      }
-    });
-
-    // Special: services_provided checkboxes (section 2)
-    if (currentSection === 2) {
-      var checked = form.querySelectorAll('input[name="services_provided"]:checked');
-      if (checked.length === 0) {
-        document.getElementById("services_provided").style.outline = "2px solid #dc2626";
-        valid = false;
-      } else {
-        document.getElementById("services_provided").style.outline = "";
-      }
-    }
-
-    if (!valid) {
-      // Focus first invalid field
-      var firstInvalid = section.querySelector(".invalid");
-      if (firstInvalid) firstInvalid.focus();
-    }
-
-    return valid;
+    return true;
   }
 
   // --- NPI Validation ---
