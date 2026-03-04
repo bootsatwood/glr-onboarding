@@ -55,7 +55,7 @@ export default {
       },
       body: JSON.stringify({
         event_type: "form-submission",
-        client_payload: formData,
+        client_payload: { data: JSON.stringify(formData) },
       }),
     });
 

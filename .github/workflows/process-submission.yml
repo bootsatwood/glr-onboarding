@@ -20,5 +20,5 @@ jobs:
       - name: Process submission
         env:
           MONDAY_API_TOKEN: ${{ secrets.MONDAY_API_TOKEN }}
-          PAYLOAD: ${{ toJson(github.event.client_payload) }}
+          PAYLOAD: ${{ github.event.client_payload.data }}
         run: python scripts/process_submission.py
