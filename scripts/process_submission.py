@@ -226,6 +226,28 @@ def create_item(token, name, column_values):
     return monday_request(token, query, variables)
 
 
+def update_item(token, item_id, column_values):
+    """Update an existing item's column values on the CRM Pipeline board."""
+    query = """
+    mutation ($boardId: ID!, $itemId: ID!, $columnValues: JSON!) {
+        change_multiple_column_values(
+            board_id: $boardId,
+            item_id: $itemId,
+            column_values: $columnValues
+        ) {
+            id
+            name
+        }
+    }
+    """
+    variables = {
+        "boardId": str(CRM_BOARD_ID),
+        "itemId": str(item_id),
+        "columnValues": json.dumps(column_values),
+    }
+    return monday_request(token, query, variables)
+
+
 def create_update(token, item_id, body):
     """Add an update (comment) to an item with the full form data."""
     query = """
@@ -244,17 +266,28 @@ def main():
     data = get_payload()
 
     facility_name = data.get("facility_name", "Unknown Facility")
+    existing_item_id = data.get("item_id", "").strip()
+
     print(f"Processing submission: {facility_name}")
 
-    # Build column values for the main item
+    # Build column values
     col_values = build_column_values(data)
     print(f"Column values: {json.dumps(col_values, indent=2)}")
 
-    # Create the item
-    result = create_item(token, facility_name, col_values)
-    item = result["data"]["create_item"]
-    item_id = item["id"]
-    print(f"Created item: {item['name']} (ID: {item_id})")
+    if existing_item_id:
+        # UPDATE existing item — item stays in its current group
+        print(f"Updating existing item {existing_item_id}")
+        result = update_item(token, existing_item_id, col_values)
+        item = result["data"]["change_multiple_column_values"]
+        item_id = item["id"]
+        print(f"Updated item: {item['name']} (ID: {item_id})")
+    else:
+        # CREATE new item (fallback — shouldn't happen in normal flow)
+        print("No item_id provided — creating new item")
+        result = create_item(token, facility_name, col_values)
+        item = result["data"]["create_item"]
+        item_id = item["id"]
+        print(f"Created item: {item['name']} (ID: {item_id})")
 
     # Add a detailed update with ALL form fields (captures data that doesn't
     # map to board columns, like providers, vendors, contacts)
@@ -263,7 +296,7 @@ def main():
         create_update(token, item_id, update_body)
         print("Added detailed update to item")
 
-    print(f"\nDone. Item {item_id} created on board {CRM_BOARD_ID}.")
+    print(f"\nDone. Item {item_id} on board {CRM_BOARD_ID}.")
 
 
 if __name__ == "__main__":

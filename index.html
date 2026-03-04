@@ -18,6 +18,8 @@
     </header>
 
     <form id="onboardingForm" novalidate>
+      <!-- Hidden field: passed via URL param so backend knows to UPDATE, not create -->
+      <input type="hidden" name="item_id" id="item_id" value="">
 
       <!-- ============================================================ -->
       <!-- SECTION 1: Facility Demographics                             -->
