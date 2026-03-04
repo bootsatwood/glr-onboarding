@@ -12,7 +12,10 @@
   // The DISPATCH_TOKEN is a fine-grained PAT scoped to Actions on this repo only.
   // TODO: Replace with actual values after creating the PAT and enabling the workflow.
   const DISPATCH_URL = "https://api.github.com/repos/bootsatwood/glr-onboarding/dispatches";
-  const DISPATCH_TOKEN = ""; // Set after creating fine-grained PAT
+  const DISPATCH_TOKEN = "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";
+
+  // Simple passphrase gate — filters casual visitors, not real security
+  const PASSPHRASE = "eventus2026";
 
   let currentSection = 1;
 
@@ -30,10 +33,34 @@
   // --- Initialization ---
 
   function init() {
+    if (!checkPassphrase()) return;
     prefillFromURL();
     showSection(1);
     bindNavigation();
     bindNPIValidation();
+  }
+
+  // --- Passphrase gate ---
+
+  function checkPassphrase() {
+    // Allow bypass via URL param (for pre-fill links shared with AEs)
+    var params = new URLSearchParams(window.location.search);
+    if (params.get("key") === PASSPHRASE) return true;
+
+    // Check sessionStorage (already verified this session)
+    if (sessionStorage.getItem("glr_auth") === "true") return true;
+
+    // Prompt
+    var input = prompt("Enter access code to continue:");
+    if (input && input.trim().toLowerCase() === PASSPHRASE) {
+      sessionStorage.setItem("glr_auth", "true");
+      return true;
+    }
+
+    document.querySelector(".form-container").innerHTML =
+      '<div style="text-align:center;padding:4rem 2rem;color:#6b7280;">' +
+      '<h2>Access Denied</h2><p>Refresh the page to try again.</p></div>';
+    return false;
   }
 
   // --- Pre-fill from URL query parameters ---
