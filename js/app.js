@@ -8,11 +8,10 @@
   const TOTAL_SECTIONS = 7;
   const NPI_API = "https://npiregistry.cms.hhs.gov/api/?version=2.1&number=";
 
-  // GitHub Actions endpoint — form submissions trigger a repository_dispatch event.
-  // The DISPATCH_TOKEN is a fine-grained PAT scoped to Actions on this repo only.
-  // TODO: Replace with actual values after creating the PAT and enabling the workflow.
-  const DISPATCH_URL = "https://api.github.com/repos/bootsatwood/glr-onboarding/dispatches";
-  const DISPATCH_TOKEN = ""; // Set via Cloudflare Worker proxy — token never in client code
+  // Cloudflare Worker proxy — holds the GitHub PAT server-side and forwards
+  // form submissions as repository_dispatch events to GitHub Actions.
+  // TODO: Replace with your actual Worker URL after deploying it.
+  const WORKER_URL = "https://glr-submit.ratwood.workers.dev";
 
   // Simple passphrase gate — filters casual visitors, not real security
   const PASSPHRASE = "eventus2026";
@@ -257,29 +256,18 @@
     btnSubmit.disabled = true;
     btnSubmit.textContent = "Submitting...";
 
-    if (!DISPATCH_TOKEN) {
-      // No token configured — show success with note
-      showSuccess(data, "(Demo mode — backend not yet connected)");
-      return;
-    }
-
-    fetch(DISPATCH_URL, {
+    fetch(WORKER_URL, {
       method: "POST",
-      headers: {
-        "Authorization": "Bearer " + DISPATCH_TOKEN,
-        "Accept": "application/vnd.github.v3+json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        event_type: "form-submission",
-        client_payload: data
-      })
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
     })
       .then(function (res) {
-        if (res.status === 204 || res.ok) {
+        if (res.ok) {
           showSuccess(data, "");
         } else {
-          throw new Error("GitHub API returned " + res.status);
+          return res.text().then(function (text) {
+            throw new Error(text || "Server returned " + res.status);
+          });
         }
       })
       .catch(function (err) {
