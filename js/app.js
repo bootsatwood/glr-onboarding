@@ -12,7 +12,7 @@
   // The DISPATCH_TOKEN is a fine-grained PAT scoped to Actions on this repo only.
   // TODO: Replace with actual values after creating the PAT and enabling the workflow.
   const DISPATCH_URL = "https://api.github.com/repos/bootsatwood/glr-onboarding/dispatches";
-  const DISPATCH_TOKEN = "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";
+  const DISPATCH_TOKEN = ""; // Set via Cloudflare Worker proxy — token never in client code
 
   // Simple passphrase gate — filters casual visitors, not real security
   const PASSPHRASE = "eventus2026";
