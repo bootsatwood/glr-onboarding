@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GLR New Facility Onboarding</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="form-container">
+    <header class="form-header">
+      <h1>GLR New Facility Onboarding</h1>
+      <p class="form-subtitle">New facility intake for operational setup — demographics, vendors, contacts, care team, and provider assignments.</p>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-label" id="progressLabel">Section 1 of 7</div>
+    </header>
+
+    <form id="onboardingForm" novalidate>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 1: Facility Demographics                             -->
+      <!-- ============================================================ -->
+      <fieldset class="form-section" data-section="1">
+        <legend>Facility Demographics</legend>
+
+        <div class="field-group">
+          <div class="field full">
+            <label for="facility_name">Facility Name <span class="req">*</span></label>
+            <input type="text" id="facility_name" name="facility_name" required>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field half">
+            <label for="facility_type">Facility Type <span class="req">*</span></label>
+            <select id="facility_type" name="facility_type" required>
+              <option value="">Select...</option>
+              <option value="ALF">ALF</option>
+              <option value="SNF">SNF</option>
+              <option value="ALF/SNF">ALF/SNF</option>
+              <option value="IL">IL</option>
+              <option value="CCRC">CCRC</option>
+            </select>
+          </div>
+          <div class="field half">
+            <label for="parent_company">Parent Company <span class="req">*</span></label>
+            <input type="text" id="parent_company" name="parent_company" required>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field full">
+            <label for="address">Address <span class="req">*</span></label>
+            <input type="text" id="address" name="address" required>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field third">
+            <label for="city">City <span class="req">*</span></label>
+            <input type="text" id="city" name="city" required>
+          </div>
+          <div class="field third">
+            <label for="state">State <span class="req">*</span></label>
+            <select id="state" name="state" required>
+              <option value="">Select...</option>
+              <option value="Indiana">Indiana</option>
+              <option value="Kentucky">Kentucky</option>
+              <option value="North Carolina">North Carolina</option>
+              <option value="Ohio">Ohio</option>
+              <option value="South Carolina">South Carolina</option>
+              <option value="Virginia">Virginia</option>
+              <option value="West Virginia">West Virginia</option>
+            </select>
+          </div>
+          <div class="field third">
+            <label for="zip">Zip Code <span class="req">*</span></label>
+            <input type="text" id="zip" name="zip" pattern="\d{5}" maxlength="5" placeholder="00000" required>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field half">
+            <label for="phone">Phone Number <span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="000-000-0000" required>
+          </div>
+          <div class="field half">
+            <label for="fax">Fax Number</label>
+            <input type="tel" id="fax" name="fax" placeholder="000-000-0000">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field half">
+            <label for="facility_emr">Facility EMR <span class="req">*</span></label>
+            <input type="text" id="facility_emr" name="facility_emr" placeholder="Current EMR system" required>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 2: Facility Details                                  -->
+      <!-- ============================================================ -->
+      <fieldset class="form-section" data-section="2">
+        <legend>Facility Details</legend>
+
+        <div class="field-group">
+          <div class="field half">
+            <label for="email_schedule">Email to Send Schedule</label>
+            <input type="email" id="email_schedule" name="email_schedule">
+          </div>
+          <div class="field half">
+            <label for="fax_schedule">Fax to Send Schedule</label>
+            <input type="text" id="fax_schedule" name="fax_schedule" placeholder="000-000-0000">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field half">
+            <label for="email_notes">Email to Send Notes</label>
+            <input type="email" id="email_notes" name="email_notes">
+          </div>
+          <div class="field half">
+            <label for="fax_notes">Fax to Send Notes</label>
+            <input type="text" id="fax_notes" name="fax_notes" placeholder="000-000-0000">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field half">
+            <label for="beds">Licensed Bed # <span class="req">*</span></label>
+            <input type="number" id="beds" name="beds" min="0" required>
+          </div>
+          <div class="field half">
+            <label for="census">Current Census <span class="req">*</span></label>
+            <input type="number" id="census" name="census" min="0" required>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field full">
+            <label>Services Provided <span class="req">*</span></label>
+            <div class="checkbox-group" id="services_provided">
+              <label class="checkbox-label"><input type="checkbox" name="services_provided" value="All Services"> All Services</label>
+              <label class="checkbox-label"><input type="checkbox" name="services_provided" value="Primary Care"> Primary Care</label>
+              <label class="checkbox-label"><input type="checkbox" name="services_provided" value="Mental Health"> Mental Health</label>
+              <label class="checkbox-label"><input type="checkbox" name="services_provided" value="Primary Care Integration"> Primary Care Integration</label>
+              <label class="checkbox-label"><input type="checkbox" name="services_provided" value="PCP and MH (No MD)"> PCP and MH (No MD)</label>
+              <label class="checkbox-label"><input type="checkbox" name="services_provided" value="Mental Health Integration"> Mental Health Integration</label>
+              <label class="checkbox-label"><input type="checkbox" name="services_provided" value="Medical Directorship"> Medical Directorship</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field half">
+            <label for="expected_start_date">Expected Start Date <span class="req">*</span></label>
+            <input type="date" id="expected_start_date" name="expected_start_date" required>
+          </div>
+          <div class="field half">
+            <label for="facility_npi">Facility NPI <span class="req">*</span></label>
+            <div class="npi-field">
+              <input type="text" id="facility_npi" name="facility_npi" pattern="\d{10}" maxlength="10" placeholder="10-digit NPI" required>
+              <span class="npi-status" id="facility_npi_status"></span>
+            </div>
+            <a href="https://npiregistry.cms.hhs.gov" target="_blank" class="help-link">Look up NPI</a>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 3: Vendors                                           -->
+      <!-- ============================================================ -->
+      <fieldset class="form-section" data-section="3">
+        <legend>Vendors</legend>
+
+        <div class="field-group">
+          <div class="field two-thirds">
+            <label for="lab">Lab</label>
+            <input type="text" id="lab" name="lab">
+          </div>
+          <div class="field third">
+            <label for="lab_days">Lab Scheduled Days</label>
+            <input type="text" id="lab_days" name="lab_days" placeholder="e.g., Mon/Wed/Fri">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field full">
+            <label for="pharmacy">Pharmacy</label>
+            <input type="text" id="pharmacy" name="pharmacy">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field full">
+            <label for="xray">X-ray / Imaging</label>
+            <input type="text" id="xray" name="xray">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field full">
+            <label for="pt_ot_st">PT / OT / ST</label>
+            <input type="text" id="pt_ot_st" name="pt_ot_st">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field full">
+            <label for="dme">DME</label>
+            <input type="text" id="dme" name="dme">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field full">
+            <label for="hospice">Hospice</label>
+            <input type="text" id="hospice" name="hospice">
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field full">
+            <label for="home_health">Home Health</label>
+            <input type="text" id="home_health" name="home_health">
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 4: Facility Contacts                                 -->
+      <!-- ============================================================ -->
+      <fieldset class="form-section" data-section="4">
+        <legend>Facility Contacts</legend>
+
+        <div class="contact-block">
+          <h3>Contact 1 <span class="req">*</span></h3>
+          <div class="field-group">
+            <div class="field third">
+              <label for="contact1_name">Name</label>
+              <input type="text" id="contact1_name" name="contact1_name" required>
+            </div>
+            <div class="field third">
+              <label for="contact1_title">Title / Position</label>
+              <input type="text" id="contact1_title" name="contact1_title" required>
+            </div>
+            <div class="field third">
+              <label for="contact1_email">Email</label>
+              <input type="email" id="contact1_email" name="contact1_email" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-block">
+          <h3>Contact 2</h3>
+          <div class="field-group">
+            <div class="field third">
+              <label for="contact2_name">Name</label>
+              <input type="text" id="contact2_name" name="contact2_name">
+            </div>
+            <div class="field third">
+              <label for="contact2_title">Title / Position</label>
+              <input type="text" id="contact2_title" name="contact2_title">
+            </div>
+            <div class="field third">
+              <label for="contact2_email">Email</label>
+              <input type="email" id="contact2_email" name="contact2_email">
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-block">
+          <h3>Contact 3</h3>
+          <div class="field-group">
+            <div class="field third">
+              <label for="contact3_name">Name</label>
+              <input type="text" id="contact3_name" name="contact3_name">
+            </div>
+            <div class="field third">
+              <label for="contact3_title">Title / Position</label>
+              <input type="text" id="contact3_title" name="contact3_title">
+            </div>
+            <div class="field third">
+              <label for="contact3_email">Email</label>
+              <input type="email" id="contact3_email" name="contact3_email">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 5: Care Team & Primary Care                          -->
+      <!-- ============================================================ -->
+      <fieldset class="form-section" data-section="5">
+        <legend>Care Team &amp; Primary Care</legend>
+
+        <div class="field-group">
+          <div class="field half">
+            <label for="ae">Account Executive <span class="req">*</span></label>
+            <input type="text" id="ae" name="ae" required>
+          </div>
+          <div class="field half">
+            <label for="care_team">Care Team <span class="req">*</span></label>
+            <select id="care_team" name="care_team" required>
+              <option value="">Select...</option>
+              <option value="Indianapolis">Indianapolis</option>
+              <option value="Indiana South">Indiana South</option>
+              <option value="Indiana Northeast">Indiana Northeast</option>
+              <option value="Indiana Northwest">Indiana Northwest</option>
+              <option value="Ohio South">Ohio South</option>
+              <option value="Ohio North">Ohio North</option>
+              <option value="Kentucky East">Kentucky East</option>
+              <option value="Kentucky West">Kentucky West</option>
+              <option value="Virginia North">Virginia North</option>
+              <option value="Virginia South">Virginia South</option>
+              <option value="Carolinas Northeast">Carolinas Northeast</option>
+              <option value="Carolinas Southeast">Carolinas Southeast</option>
+              <option value="Carolinas West">Carolinas West</option>
+              <option value="Carolinas Triad">Carolinas Triad</option>
+              <option value="Carolinas Charlotte">Carolinas Charlotte</option>
+              <option value="Carolinas Central">Carolinas Central</option>
+              <option value="Carolinas Triangle">Carolinas Triangle</option>
+              <option value="South Carolina">South Carolina</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <div class="field half">
+            <label for="adcoe">ADCOE <span class="req">*</span></label>
+            <input type="text" id="adcoe" name="adcoe" required>
+          </div>
+          <div class="field half">
+            <label for="adcoe_support">ADCOE Support Specialist <span class="req">*</span></label>
+            <input type="text" id="adcoe_support" name="adcoe_support" required>
+          </div>
+        </div>
+
+        <div class="provider-block">
+          <h3>Medical Director</h3>
+          <div class="field-group">
+            <div class="field two-thirds">
+              <label for="medical_director">Provider Name</label>
+              <input type="text" id="medical_director" name="medical_director">
+            </div>
+            <div class="field third">
+              <label for="medical_director_npi">NPI</label>
+              <div class="npi-field">
+                <input type="text" id="medical_director_npi" name="medical_director_npi" class="npi-input" pattern="\d{10}" maxlength="10" placeholder="10-digit NPI">
+                <span class="npi-status" data-npi-for="medical_director_npi"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="provider-block">
+          <h3>MD/DO Attending</h3>
+          <div class="field-group">
+            <div class="field two-thirds">
+              <label for="mddo_attending">Provider Name</label>
+              <input type="text" id="mddo_attending" name="mddo_attending">
+            </div>
+            <div class="field third">
+              <label for="mddo_attending_npi">NPI</label>
+              <div class="npi-field">
+                <input type="text" id="mddo_attending_npi" name="mddo_attending_npi" class="npi-input" pattern="\d{10}" maxlength="10" placeholder="10-digit NPI">
+                <span class="npi-status" data-npi-for="mddo_attending_npi"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="provider-block">
+          <h3>PC Provider</h3>
+          <div class="field-group">
+            <div class="field third">
+              <label for="pc_provider">Provider Name</label>
+              <input type="text" id="pc_provider" name="pc_provider">
+            </div>
+            <div class="field third">
+              <label for="pc_provider_npi">NPI</label>
+              <div class="npi-field">
+                <input type="text" id="pc_provider_npi" name="pc_provider_npi" class="npi-input" pattern="\d{10}" maxlength="10" placeholder="10-digit NPI">
+                <span class="npi-status" data-npi-for="pc_provider_npi"></span>
+              </div>
+            </div>
+            <div class="field third">
+              <label for="pc_days">Scheduled Days</label>
+              <input type="text" id="pc_days" name="pc_days" placeholder="e.g., Mon/Wed/Fri">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 6: Mental Health Providers                           -->
+      <!-- ============================================================ -->
+      <fieldset class="form-section" data-section="6">
+        <legend>Mental Health Providers</legend>
+
+        <div class="provider-block">
+          <h3>Psychiatry Provider</h3>
+          <div class="field-group">
+            <div class="field third">
+              <label for="psych_provider">Provider Name</label>
+              <input type="text" id="psych_provider" name="psych_provider">
+            </div>
+            <div class="field third">
+              <label for="psych_provider_npi">NPI</label>
+              <div class="npi-field">
+                <input type="text" id="psych_provider_npi" name="psych_provider_npi" class="npi-input" pattern="\d{10}" maxlength="10" placeholder="10-digit NPI">
+                <span class="npi-status" data-npi-for="psych_provider_npi"></span>
+              </div>
+            </div>
+            <div class="field third">
+              <label for="psych_days">Scheduled Days</label>
+              <input type="text" id="psych_days" name="psych_days" placeholder="e.g., Tue/Thu">
+            </div>
+          </div>
+        </div>
+
+        <div class="provider-block">
+          <h3>Psychotherapy Provider</h3>
+          <div class="field-group">
+            <div class="field third">
+              <label for="therapy_provider">Provider Name</label>
+              <input type="text" id="therapy_provider" name="therapy_provider">
+            </div>
+            <div class="field third">
+              <label for="therapy_provider_npi">NPI</label>
+              <div class="npi-field">
+                <input type="text" id="therapy_provider_npi" name="therapy_provider_npi" class="npi-input" pattern="\d{10}" maxlength="10" placeholder="10-digit NPI">
+                <span class="npi-status" data-npi-for="therapy_provider_npi"></span>
+              </div>
+            </div>
+            <div class="field third">
+              <label for="therapy_days">Scheduled Days</label>
+              <input type="text" id="therapy_days" name="therapy_days" placeholder="e.g., Mon-Fri">
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ============================================================ -->
+      <!-- SECTION 7: Other Providers                                   -->
+      <!-- ============================================================ -->
+      <fieldset class="form-section" data-section="7">
+        <legend>Other Providers</legend>
+
+        <div class="provider-block">
+          <h3>Podiatry Provider</h3>
+          <div class="field-group">
+            <div class="field third">
+              <label for="podiatry_provider">Provider Name</label>
+              <input type="text" id="podiatry_provider" name="podiatry_provider">
+            </div>
+            <div class="field third">
+              <label for="podiatry_provider_npi">NPI</label>
+              <div class="npi-field">
+                <input type="text" id="podiatry_provider_npi" name="podiatry_provider_npi" class="npi-input" pattern="\d{10}" maxlength="10" placeholder="10-digit NPI">
+                <span class="npi-status" data-npi-for="podiatry_provider_npi"></span>
+              </div>
+            </div>
+            <div class="field third">
+              <label for="podiatry_days">Scheduled Days</label>
+              <input type="text" id="podiatry_days" name="podiatry_days" placeholder="e.g., 1st/3rd Wed">
+            </div>
+          </div>
+        </div>
+
+        <div class="provider-block">
+          <h3>Wound Care Provider</h3>
+          <div class="field-group">
+            <div class="field third">
+              <label for="wound_provider">Provider Name</label>
+              <input type="text" id="wound_provider" name="wound_provider">
+            </div>
+            <div class="field third">
+              <label for="wound_provider_npi">NPI</label>
+              <div class="npi-field">
+                <input type="text" id="wound_provider_npi" name="wound_provider_npi" class="npi-input" pattern="\d{10}" maxlength="10" placeholder="10-digit NPI">
+                <span class="npi-status" data-npi-for="wound_provider_npi"></span>
+              </div>
+            </div>
+            <div class="field third">
+              <label for="wound_days">Scheduled Days</label>
+              <input type="text" id="wound_days" name="wound_days" placeholder="e.g., Tue/Fri">
+            </div>
+          </div>
+        </div>
+
+        <div class="provider-block">
+          <h3>ISNP Provider</h3>
+          <div class="field-group">
+            <div class="field two-thirds">
+              <label for="isnp_provider">Provider Name</label>
+              <input type="text" id="isnp_provider" name="isnp_provider">
+            </div>
+            <div class="field third">
+              <label for="isnp_provider_npi">NPI</label>
+              <div class="npi-field">
+                <input type="text" id="isnp_provider_npi" name="isnp_provider_npi" class="npi-input" pattern="\d{10}" maxlength="10" placeholder="10-digit NPI">
+                <span class="npi-status" data-npi-for="isnp_provider_npi"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- ============================================================ -->
+      <!-- Navigation                                                   -->
+      <!-- ============================================================ -->
+      <div class="form-nav">
+        <button type="button" id="btnPrev" class="btn btn-secondary" disabled>Back</button>
+        <button type="button" id="btnNext" class="btn btn-primary">Next</button>
+        <button type="submit" id="btnSubmit" class="btn btn-submit" style="display:none">Submit</button>
+      </div>
+    </form>
+
+    <!-- Success screen -->
+    <div id="successScreen" class="success-screen" style="display:none">
+      <div class="success-icon">&#10003;</div>
+      <h2>Submission Received</h2>
+      <p>The facility onboarding data has been submitted. Monday.com CRM and GLR will be updated shortly.</p>
+      <p class="success-detail" id="successDetail"></p>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
