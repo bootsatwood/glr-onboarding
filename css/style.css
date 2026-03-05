@@ -1,6 +1,14 @@
 /* ============================================================
    GLR New Facility Onboarding — Stylesheet
+   Eventus WholeHealth Brand Guidelines (2018)
+   ============================================================
+   Primary:  Purple #877BE9 | Light Blue #91D9E8 | Navy #193241
+   Accent:   Pewter #507E8E | Yellow #FCF1A6 | Grey #E1E2E0 | Plum #293A60
+   Fonts:    Gilroy ExtraBold (headings) → Poppins 700/800
+             Brandon Grotesque (body)    → Nunito Sans 400/600
    ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&family=Poppins:wght@600;700;800&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -9,10 +17,10 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: #f0f2f5;
-  color: #1a1a2e;
-  line-height: 1.5;
+  font-family: "Nunito Sans", "Brandon Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #edf0f2;
+  color: #193241;
+  line-height: 1.55;
   min-height: 100vh;
 }
 
@@ -27,30 +35,47 @@ body {
 /* --- Header --- */
 
 .form-header {
-  background: #fff;
+  background: #193241;
   border-radius: 8px 8px 0 0;
   padding: 2rem 2rem 1.5rem;
-  border-bottom: 1px solid #e4e7eb;
+  border-top: 4px solid #91D9E8;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Watermark — brand guide person icon (subtle, bottom-right) */
+.form-header::after {
+  content: "";
+  position: absolute;
+  bottom: -30px;
+  right: -10px;
+  width: 120px;
+  height: 140px;
+  opacity: 0.08;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Ccircle cx='50' cy='12' r='10' fill='%2391D9E8' stroke='none'/%3E%3Ccircle cx='50' cy='12' r='5' fill='%23193241'/%3E%3Cpath d='M50 28 C25 28 20 60 20 90 L20 120 L35 120 L35 90 C35 70 40 40 50 40 C60 40 65 70 65 90 L65 120 L80 120 L80 90 C80 60 75 28 50 28Z' fill='%2391D9E8'/%3E%3C/svg%3E") no-repeat center / contain;
 }
 
 .form-header h1 {
+  font-family: "Poppins", "Gilroy", sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1a1a2e;
+  color: #ffffff;
   margin-bottom: 0.25rem;
+  letter-spacing: -0.01em;
 }
 
 .form-subtitle {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: #91D9E8;
   margin-bottom: 1.25rem;
+  font-weight: 400;
 }
 
 /* --- Progress bar --- */
 
 .progress-bar {
   height: 6px;
-  background: #e4e7eb;
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 3px;
   overflow: hidden;
 }
@@ -58,14 +83,14 @@ body {
 .progress-fill {
   height: 100%;
   width: 14.28%;
-  background: #2563eb;
+  background: #877BE9;
   border-radius: 3px;
   transition: width 0.3s ease;
 }
 
 .progress-label {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: rgba(255, 255, 255, 0.6);
   margin-top: 0.5rem;
   text-align: right;
 }
@@ -84,12 +109,13 @@ body {
 }
 
 .form-section legend {
+  font-family: "Poppins", "Gilroy", sans-serif;
   font-size: 1.125rem;
-  font-weight: 600;
-  color: #1a1a2e;
+  font-weight: 700;
+  color: #193241;
   margin-bottom: 1.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid #2563eb;
+  border-bottom: 3px solid #91D9E8;
   width: 100%;
 }
 
@@ -116,7 +142,7 @@ body {
 label {
   font-size: 0.8125rem;
   font-weight: 600;
-  color: #374151;
+  color: #293A60;
   margin-bottom: 0.25rem;
 }
 
@@ -135,19 +161,20 @@ input[type="date"],
 select {
   width: 100%;
   padding: 0.5rem 0.75rem;
+  font-family: "Nunito Sans", sans-serif;
   font-size: 0.875rem;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   background: #fff;
-  color: #1a1a2e;
+  color: #193241;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 input:focus,
 select:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: #877BE9;
+  box-shadow: 0 0 0 3px rgba(135, 123, 233, 0.15);
 }
 
 input.invalid,
@@ -177,14 +204,14 @@ select:disabled {
   gap: 0.375rem;
   font-size: 0.8125rem;
   font-weight: 400;
-  color: #374151;
+  color: #293A60;
   cursor: pointer;
 }
 
 .checkbox-label input[type="checkbox"] {
   width: 1rem;
   height: 1rem;
-  accent-color: #2563eb;
+  accent-color: #877BE9;
   cursor: pointer;
 }
 
@@ -219,26 +246,29 @@ select:disabled {
 
 .npi-status.loading::after {
   content: "\23F3";
-  color: #6b7280;
+  color: #507E8E;
 }
 
 .help-link {
   font-size: 0.75rem;
-  color: #2563eb;
+  color: #877BE9;
   text-decoration: none;
   margin-top: 0.25rem;
+  font-weight: 600;
 }
 
 .help-link:hover {
   text-decoration: underline;
+  color: #6a5fd4;
 }
 
 /* --- Provider & contact blocks --- */
 
 .provider-block,
 .contact-block {
-  background: #f9fafb;
-  border: 1px solid #e4e7eb;
+  background: #f7fbfc;
+  border: 1px solid #d6eef3;
+  border-left: 3px solid #91D9E8;
   border-radius: 6px;
   padding: 1rem 1.25rem;
   margin-bottom: 1rem;
@@ -246,10 +276,13 @@ select:disabled {
 
 .provider-block h3,
 .contact-block h3 {
+  font-family: "Poppins", sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #2563eb;
+  color: #507E8E;
   margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 /* --- Navigation --- */
@@ -258,7 +291,7 @@ select:disabled {
   background: #fff;
   padding: 1.25rem 2rem;
   border-radius: 0 0 8px 8px;
-  border-top: 1px solid #e4e7eb;
+  border-top: 1px solid #E1E2E0;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
@@ -266,12 +299,13 @@ select:disabled {
 
 .btn {
   padding: 0.625rem 1.5rem;
+  font-family: "Poppins", sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.15s, opacity 0.15s;
+  transition: background 0.15s, opacity 0.15s, transform 0.1s;
 }
 
 .btn:disabled {
@@ -279,37 +313,41 @@ select:disabled {
   cursor: not-allowed;
 }
 
+.btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
 .btn-primary {
-  background: #2563eb;
+  background: #877BE9;
   color: #fff;
   margin-left: auto;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #1d4ed8;
+  background: #7468d6;
 }
 
 .btn-secondary {
-  background: #e4e7eb;
-  color: #374151;
+  background: #E1E2E0;
+  color: #293A60;
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: #d1d5db;
+  background: #d1d2d0;
 }
 
 .btn-submit {
-  background: #16a34a;
+  background: #193241;
   color: #fff;
   margin-left: auto;
 }
 
 .btn-submit:hover:not(:disabled) {
-  background: #15803d;
+  background: #0f2230;
 }
 
 .btn-submit:disabled {
-  background: #86efac;
+  background: #507E8E;
 }
 
 /* --- Success screen --- */
@@ -325,20 +363,22 @@ select:disabled {
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  background: #dcfce7;
-  color: #16a34a;
+  background: #eee8ff;
+  color: #877BE9;
   font-size: 2rem;
   line-height: 4rem;
   margin: 0 auto 1.5rem;
 }
 
 .success-screen h2 {
+  font-family: "Poppins", sans-serif;
   font-size: 1.25rem;
+  color: #193241;
   margin-bottom: 0.5rem;
 }
 
 .success-screen p {
-  color: #6b7280;
+  color: #507E8E;
   font-size: 0.875rem;
 }
 
